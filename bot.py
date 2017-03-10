@@ -11,8 +11,6 @@ import sleekxmpp
 class Client(sleekxmpp.ClientXMPP):
     def __init__(self, jid, password, parent):
         sleekxmpp.ClientXMPP.__init__(self, jid, password)
-#        self.recipient = r/zecipient
-#        self.msg = message
         self.parent = parent
         self.add_event_handler("session_start", self.start, threaded=True)
         self.add_event_handler('message', self.recv, threaded=True)
@@ -21,6 +19,8 @@ class Client(sleekxmpp.ClientXMPP):
         self.send_presence()
         self.get_roster()
 
+
     def recv(self, event):
+        self.parent.add('a','b')
         print('Received ' + event['body'])
 
